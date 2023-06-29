@@ -1,0 +1,39 @@
+.not-found-route-main-container {
+  display: flex;
+  justify-content: flex-start;
+}
+.not-found-page-container {
+  background-color: black;
+  display: flex;
+  padding: 5%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+@media (max-width: 576px) {
+  .not-found-page-container {
+    margin-left: 0px;
+  }
+}
+.not-found-light {
+  background-color: #ffffff;
+}
+.not-found-page-img {
+  width: 80%;
+  height: 73vh;
+}
+.not-found-page-heading {
+  color: black;
+  font-size: 35px;
+  font-weight: 400;
+  text-align: center;
+}
+.dark {
+  color: #ffffff;
+}
+@media (max-width: 576px) {
+  .sidebar-for-desktop {
+    display: none;
+  }
+}

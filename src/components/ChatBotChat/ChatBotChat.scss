@@ -1,0 +1,42 @@
+.user-chatbot-container {
+  padding: 0px 15px 0px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .icons {
+    display: none;
+  }
+  margin-bottom: 15px;
+}
+.user-chatbot-container:hover {
+  background-color: #242323;
+  .icons {
+    display: inline;
+  }
+}
+.user-name {
+  margin-bottom: 0px;
+  color: white;
+  font-weight: 500;
+  font-size: 19px;
+}
+.time-span {
+  margin-left: 20px;
+  font-size: 17px;
+}
+.chat {
+  color: white;
+  margin-top: 0px;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 0px;
+}
+.icons {
+  font-size: 18px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.chat-icons {
+  font-size: 20px;
+  margin-right: 5px;
+}

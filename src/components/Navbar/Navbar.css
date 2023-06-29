@@ -1,0 +1,14 @@
+.nav-brand {
+  user-select: none;
+  color: black;
+  margin: 0px;
+}
+.nav-brand:hover {
+  color: black;
+}
+.nav-link {
+  text-decoration: none;
+  margin-left: 20px;
+  border: none;
+  font-size: 18px;
+}
