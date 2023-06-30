@@ -1,5 +1,3 @@
-import "./ThreadChat.css";
-
 const ThreadChat = (props) => {
   const { chat } = props;
   const { name, threadMsg, msgTime } = chat;

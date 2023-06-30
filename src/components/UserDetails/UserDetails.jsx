@@ -1,9 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavbarComp from "../Navbar/Navbar";
-import "./UserDetails.scss";
 import { useState } from "react";
-import { removeChats, submitUser } from "../Store/reducer";
+import { submitUser } from "../Store/reducer";
 import { useNavigate } from "react-router-dom";
+import "./UserDetails.css";
 
 const UserDetails = () => {
   const [firstName, setFirstName] = useState("");
@@ -11,14 +11,17 @@ const UserDetails = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
-  // const randomUser = useSelector((state) => state.chatStore.randomUser);
+  const randomUser = useSelector((state) => state.chatStore.randomUser);
+  const chatBotArray = useSelector((state) => state.chatStore.chatBotChat);
   const dispatch = useDispatch();
+  console.log(randomUser);
+  console.log(chatBotArray);
 
   const showErrorMsg = (trimmedFirstName, trimmedLastName) => {
     if (trimmedFirstName === "" && trimmedLastName !== "") {
-      setErrorMsg("please enter valid firstname");
+      setErrorMsg("please enter valid first name");
     } else if (trimmedFirstName !== "" && trimmedLastName === "") {
-      setErrorMsg("please enter valid lastname");
+      setErrorMsg("please enter valid last name");
     } else if (trimmedFirstName === "" && trimmedLastName === "") {
       setErrorMsg("please enter valid first name & last name");
     }
@@ -42,16 +45,22 @@ const UserDetails = () => {
     const trimmedLastName = lastName.trim();
     if (trimmedFirstName && trimmedLastName) {
       let addNewUser = {
-        id: 1,
-        firstName: trimmedFirstName,
-        lastName: trimmedLastName,
+        id: randomUser.length ? randomUser[randomUser.length - 1].id + 1 : 1,
+        name: `${trimmedFirstName} ${trimmedLastName}`,
       };
-      dispatch(submitUser(addNewUser));
-      dispatch(removeChats());
+      const checkUserIndex = randomUser.findIndex(
+        (user) => user.name.toLowerCase() === addNewUser.name.toLowerCase()
+      );
+      if (checkUserIndex === -1) {
+        dispatch(submitUser(addNewUser));
+      }
+      //dispatch(removeChats());
       setFirstName("");
       setLastName("");
       setErrorMsg("");
-      navigate("/userChats");
+      navigate("/userChats", {
+        state: { userIndex: checkUserIndex === -1 ? 0 : checkUserIndex },
+      });
     } else {
       showErrorMsg(trimmedFirstName, trimmedLastName);
     }

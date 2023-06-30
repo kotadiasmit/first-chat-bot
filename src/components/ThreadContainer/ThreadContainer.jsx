@@ -1,20 +1,24 @@
-import "./ThreadContainer.css";
 import { useDispatch, useSelector } from "react-redux";
 import ThreadChat from "../ThreadChat/ThreadChat";
 import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import { addThreadMsg } from "../Store/reducer";
 import { AiOutlineClose } from "react-icons/ai";
+import "./ThreadContainer.css";
 
 const ThreadContainer = (props) => {
-  const { chatId, chatBotChatsArray, closeThread } = props;
+  const { chatId, chatBotChatsArray, closeThread, userIndex } = props;
+  console.log(chatId);
   const index = chatBotChatsArray.findIndex((chat) => chat.id === chatId);
+  console.log(index);
   const ThreadArray = useSelector(
-    (state) => state.chatStore.chatBotChat[index].thread
+    (state) => state.chatStore.chatBotChat[userIndex].myChat[index].thread
   );
-  // chatBotChatsArray[index].thread;
-  const userName = ThreadArray[0].name;
-
+  console.log(ThreadArray);
+  const randomUser = useSelector(
+    (state) => state.chatStore.randomUser[userIndex]
+  );
+  const userName = randomUser.name;
   const endRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -44,7 +48,7 @@ const ThreadContainer = (props) => {
         msgTime: moment(new Date()).format("LT"),
       };
       setNewThread(addThreadChat);
-      dispatch(addThreadMsg({ chatId, addThreadChat }));
+      dispatch(addThreadMsg({ userIndex, chatId, index, addThreadChat }));
       setThreadInput("");
     } else {
       alert("please enter valid message");

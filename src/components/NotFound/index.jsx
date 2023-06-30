@@ -1,11 +1,10 @@
 import NavbarComp from "../Navbar/Navbar";
-import "./index.scss";
+import "./index.css";
 
 const NotFound = () => (
   <>
     <NavbarComp />
     <div className="not-found-route-main-container">
-      <div className="sidebar-for-desktop"></div>
       <div className="not-found-page-container">
         <img
           className="not-found-page-img"
