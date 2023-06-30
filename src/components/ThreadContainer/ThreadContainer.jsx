@@ -13,7 +13,8 @@ const ThreadContainer = (props) => {
     (state) => state.chatStore.chatBotChat[index].thread
   );
   // chatBotChatsArray[index].thread;
-  const userName = ThreadArray[0].name;
+  const randomUser = useSelector((state) => state.chatStore.randomUser);
+  const userName = `${randomUser.firstName} ${randomUser.lastName}`;
 
   const endRef = useRef(null);
 
