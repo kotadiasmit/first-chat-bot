@@ -1,14 +1,15 @@
+import "./ThreadContainer.css";
 import { useDispatch } from "react-redux";
 import ThreadChat from "../ThreadChat/ThreadChat";
 import { useState } from "react";
 import moment from "moment";
 import { addThreadMsg } from "../Store/reducer";
+import { AiOutlineClose } from "react-icons/ai";
 
 const ThreadContainer = (props) => {
-  const { chatId, chatBotChatsArray } = props;
-  const ThreadArray = chatBotChatsArray[chatId - 1].thread;
-  console.log(chatId);
-  console.log(chatBotChatsArray[chatId - 1]);
+  const { chatId, chatBotChatsArray, closeThread } = props;
+  const index = chatBotChatsArray.findIndex((chat) => chat.id === chatId);
+  const ThreadArray = chatBotChatsArray[index].thread;
   const userName = ThreadArray[0].name;
 
   const dispatch = useDispatch();
@@ -28,17 +29,24 @@ const ThreadContainer = (props) => {
         threadMsg: trimmedThreadInput,
         msgTime: moment(new Date()).format("LT"),
       };
-      console.log(addThreadChat);
       dispatch(addThreadMsg({ chatId, addThreadChat }));
       setThreadInput("");
     } else {
       alert("please enter valid message");
     }
   };
+
+  const onThreadClose = () => {
+    closeThread();
+  };
+
   return (
     <div className="thread-container">
-      <h2 className="chat-heading">{ThreadArray[0].name}</h2>
-      <div className="chatbot-chat-container">
+      <div className="thread-header">
+        <h2 className="m-0">{ThreadArray[0].name}</h2>
+        <AiOutlineClose className="thread-close-btn" onClick={onThreadClose} />
+      </div>
+      <div className="thread-chat-container">
         {ThreadArray.map((chat, id) => (
           <ThreadChat key={id} chat={chat} />
         ))}
@@ -47,9 +55,9 @@ const ThreadContainer = (props) => {
         <input
           className="chatbot-input"
           type="text"
-          id="firstName"
+          id="thread"
           placeholder="Comment Message"
-          maxLength="200"
+          maxLength="100"
           value={threadInput}
           onChange={onThreadInputChanged}
           autoFocus

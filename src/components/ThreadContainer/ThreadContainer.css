@@ -1,0 +1,25 @@
+.thread-container {
+  width: 35%;
+}
+.thread-header {
+  padding: 5px 15px 5px 15px;
+  color: white;
+  border-bottom: 2px solid snow;
+  background-color: #242323;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  margin-bottom: 8px;
+}
+.thread-close-btn {
+  font-size: 25px;
+  cursor: pointer;
+}
+.thread-chat-container {
+  overflow: auto;
+  height: calc(100vh - 180px);
+}
+.thread-close-btn:active {
+  color: red;
+}

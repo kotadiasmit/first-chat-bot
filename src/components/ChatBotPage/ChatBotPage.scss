@@ -11,6 +11,7 @@
   color: white;
   border-bottom: 2px solid snow;
   background-color: #242323;
+  user-select: none;
 }
 .chatbot-chat-container {
   height: calc(100vh - 180px);

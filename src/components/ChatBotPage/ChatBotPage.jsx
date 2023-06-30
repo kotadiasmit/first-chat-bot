@@ -8,18 +8,16 @@ import { Navigate } from "react-router-dom";
 import ChatBotChat from "../ChatBotChat/ChatBotChat";
 import ThreadContainer from "../ThreadContainer/ThreadContainer";
 
-let chatId = 1;
 const ChatBotPage = () => {
   const [chatBotUserInput, setChatBotUserInput] = useState("");
   const [isShowThread, setIsShowThread] = useState(false);
+  const [chatId, setChatId] = useState(1);
 
   const dispatch = useDispatch();
   const randomUser = useSelector((state) => state.chatStore.randomUser);
   const userName = `${randomUser.firstName} ${randomUser.lastName}`;
-  console.log(randomUser);
 
   const chatBotChatsArray = useSelector((state) => state.chatStore.chatBotChat);
-  console.log(chatBotChatsArray);
 
   const onChatBotUserInputChanged = (event) => {
     const { value } = event.target;
@@ -27,8 +25,12 @@ const ChatBotPage = () => {
   };
 
   const showThread = (id) => {
-    setIsShowThread((prevState) => !prevState);
-    chatId = id;
+    setIsShowThread(true);
+    setChatId(id);
+  };
+
+  const closeThread = () => {
+    setIsShowThread(false);
   };
 
   const onChatBotSubmit = (event) => {
@@ -36,9 +38,7 @@ const ChatBotPage = () => {
     const trimmedChatBotUserInput = chatBotUserInput.trim();
     if (trimmedChatBotUserInput) {
       let addChatBotChat = {
-        id: chatBotChatsArray.length
-          ? chatBotChatsArray[chatBotChatsArray.length - 1].id + 1
-          : 1,
+        id: chatBotChatsArray.length + 1 + "u",
         name: userName,
         chatBotMsg: trimmedChatBotUserInput,
         msgTime: moment(new Date()).format("LT"),
@@ -55,7 +55,7 @@ const ChatBotPage = () => {
       dispatch(addChatBotMsg(addChatBotChat));
       setTimeout(() => {
         let addBotChat = {
-          id: chatBotChatsArray[chatBotChatsArray.length - 1].id + 2,
+          id: chatBotChatsArray.length + 1 + "b",
           name: "Bot User",
           chatBotMsg: "Hi I am bot user. How can I help you?",
           msgTime: moment(new Date()).format("LT"),
@@ -63,7 +63,6 @@ const ChatBotPage = () => {
           loved: false,
           thread: [
             {
-              id: chatBotChatsArray[chatBotChatsArray.length - 1].thread.id + 1,
               name: "Bot User",
               threadMsg: "Hi I am bot user. How can I help you?",
               msgTime: moment(new Date()).format("LT"),
@@ -117,6 +116,7 @@ const ChatBotPage = () => {
           <ThreadContainer
             chatId={chatId}
             chatBotChatsArray={chatBotChatsArray}
+            closeThread={closeThread}
           />
         )}
       </div>

@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+
 import { NavLink } from "react-router-dom";
 
 const NavbarComp = () => {
@@ -13,7 +14,7 @@ const NavbarComp = () => {
 
         <Nav>
           <NavLink to="/" className="nav-link">
-            Change User
+            User
           </NavLink>
           <NavLink to="/userChats" className="nav-link">
             User Chats

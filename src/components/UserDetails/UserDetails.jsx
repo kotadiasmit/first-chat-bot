@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import NavbarComp from "../Navbar/Navbar";
 import "./UserDetails.scss";
 import { useState } from "react";
-import { submitUser } from "../Store/reducer";
+import { removeChats, submitUser } from "../Store/reducer";
 import { useNavigate } from "react-router-dom";
 
 const UserDetails = () => {
@@ -47,6 +47,7 @@ const UserDetails = () => {
         lastName: trimmedLastName,
       };
       dispatch(submitUser(addNewUser));
+      dispatch(removeChats());
       setFirstName("");
       setLastName("");
       setErrorMsg("");
