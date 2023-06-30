@@ -1,7 +1,7 @@
 import "./ChatBotPage.scss";
 import { useDispatch, useSelector } from "react-redux";
 import NavbarComp from "../Navbar/Navbar";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { addChatBotMsg } from "../Store/reducer";
 import moment from "moment";
 import { Navigate } from "react-router-dom";
@@ -9,15 +9,25 @@ import ChatBotChat from "../ChatBotChat/ChatBotChat";
 import ThreadContainer from "../ThreadContainer/ThreadContainer";
 
 const ChatBotPage = () => {
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const [chatBotUserInput, setChatBotUserInput] = useState("");
   const [isShowThread, setIsShowThread] = useState(false);
   const [chatId, setChatId] = useState(1);
+  const [newChatBotChat, setChatBotChat] = useState();
 
   const dispatch = useDispatch();
   const randomUser = useSelector((state) => state.chatStore.randomUser);
   const userName = `${randomUser.firstName} ${randomUser.lastName}`;
 
   const chatBotChatsArray = useSelector((state) => state.chatStore.chatBotChat);
+  useEffect(() => {
+    scrollToBottom();
+  }, [newChatBotChat]);
 
   const onChatBotUserInputChanged = (event) => {
     const { value } = event.target;
@@ -52,6 +62,7 @@ const ChatBotPage = () => {
           },
         ],
       };
+      setChatBotChat(addChatBotChat);
       dispatch(addChatBotMsg(addChatBotChat));
       setTimeout(() => {
         let addBotChat = {
@@ -69,6 +80,7 @@ const ChatBotPage = () => {
             },
           ],
         };
+        setChatBotChat(addBotChat);
         dispatch(addChatBotMsg(addBotChat));
       }, 300);
 
@@ -92,6 +104,7 @@ const ChatBotPage = () => {
             {chatBotChatsArray.map((chat) => (
               <ChatBotChat key={chat.id} chat={chat} showThread={showThread} />
             ))}
+            <div ref={messagesEndRef} />
           </div>
           <form
             className="chatbot-user-input-container"

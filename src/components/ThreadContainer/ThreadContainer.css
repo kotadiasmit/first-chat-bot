@@ -10,7 +10,6 @@
   justify-content: space-between;
   align-items: center;
   user-select: none;
-  margin-bottom: 8px;
 }
 .thread-close-btn {
   font-size: 25px;
@@ -18,8 +17,16 @@
 }
 .thread-chat-container {
   overflow: auto;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 172px);
 }
 .thread-close-btn:active {
   color: red;
+}
+@media (max-width: 650px) {
+  .thread-heading {
+    font-size: 22px;
+  }
+  .thread-container {
+    width: 40%;
+  }
 }
