@@ -8,13 +8,10 @@ import "./ThreadContainer.css";
 
 const ThreadContainer = (props) => {
   const { chatId, chatBotChatsArray, closeThread, userIndex } = props;
-  console.log(chatId);
   const index = chatBotChatsArray.findIndex((chat) => chat.id === chatId);
-  console.log(index);
   const ThreadArray = useSelector(
     (state) => state.chatStore.chatBotChat[userIndex].myChat[index].thread
   );
-  console.log(ThreadArray);
   const randomUser = useSelector(
     (state) => state.chatStore.randomUser[userIndex]
   );

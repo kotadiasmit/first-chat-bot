@@ -9,7 +9,7 @@
   margin-top: 12px;
 }
 .user-chatbot-container:hover {
-  background-color: #242323;
+  background-color: #000000ab;
   .icons {
     display: inline;
   }
@@ -19,6 +19,7 @@
   color: white;
   font-weight: 500;
   font-size: 19px;
+  text-transform: capitalize;
 }
 .time-span {
   margin-left: 20px;

@@ -4,39 +4,26 @@ import NavbarComp from "../Navbar/Navbar";
 import { useEffect, useRef, useState } from "react";
 import { addChatBotMsg } from "../Store/reducer";
 import moment from "moment";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import ChatBotChat from "../ChatBotChat/ChatBotChat";
 import ThreadContainer from "../ThreadContainer/ThreadContainer";
 
 const ChatBotPage = () => {
-  const location = useLocation();
-  const { userIndex } = location.state;
-  console.log(location.state);
-  const messagesEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const [chatBotUserInput, setChatBotUserInput] = useState("");
   const [isShowThread, setIsShowThread] = useState(false);
   const [chatId, setChatId] = useState(1);
   const [newChatBotChat, setChatBotChat] = useState();
 
   const dispatch = useDispatch();
-  const randomUser = useSelector(
-    (state) => state.chatStore.randomUser[userIndex]
-  );
-  const userName = randomUser.name;
-  console.log(userName);
+  const userIndex = useSelector((state) => state.chatStore.userIndex);
 
-  const chatBotChatsArray = useSelector(
-    (state) => state.chatStore.chatBotChat[userIndex].myChat
+  const randomUser = useSelector((state) =>
+    userIndex !== null ? state.chatStore.randomUser[userIndex] : null
   );
-  console.log(chatBotChatsArray);
-  useEffect(() => {
-    scrollToBottom();
-  }, [newChatBotChat]);
+
+  const chatBotChatsArray = useSelector((state) =>
+    userIndex !== null ? state.chatStore.chatBotChat[userIndex].myChat : null
+  );
 
   const onChatBotUserInputChanged = (event) => {
     const { value } = event.target;
@@ -51,6 +38,14 @@ const ChatBotPage = () => {
   const closeThread = () => {
     setIsShowThread(false);
   };
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [newChatBotChat]);
 
   const onChatBotSubmit = (event) => {
     event.preventDefault();
@@ -71,7 +66,6 @@ const ChatBotPage = () => {
           },
         ],
       };
-      console.log(addChatBotChat);
       setChatBotChat(addChatBotChat);
       dispatch(addChatBotMsg({ userIndex, addChatBotChat }));
       setTimeout(() => {
@@ -100,9 +94,10 @@ const ChatBotPage = () => {
     }
   };
 
-  if (!randomUser.name) {
+  if (userIndex === null) {
     return <Navigate to="/" />;
   }
+  const userName = randomUser.name;
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./ChatBotChat.scss";
 import { AiFillStar, AiFillHeart, AiFillMessage } from "react-icons/ai";
 import { updateLoved, updateStar } from "../Store/reducer";
@@ -7,11 +7,7 @@ const ChatBotChat = (props) => {
   const { chat, showThread, userIndex } = props;
   const { id, name, chatBotMsg, msgTime, stared, loved } = chat;
   const dispatch = useDispatch();
-  console.log(userIndex);
 
-  // const chatsArray = useSelector(
-  //   (state) => state.chatStore.chatBotChat[userIndex].myChat[index].stared
-  // );
   const onClickStar = () => {
     dispatch(updateStar({ userIndex, id, value: !stared }));
   };

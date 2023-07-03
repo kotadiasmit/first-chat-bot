@@ -1,5 +1,6 @@
 .main-chat-container {
-  background-color: black;
+  background-image: url("https://www.sunsmart.co.in/wp-content/uploads/product/chatbot-banner.jpg");
+  background-size: 100% 100%;
   display: flex;
 }
 .chatbot-container {
@@ -10,9 +11,10 @@
   padding: 5px 15px 5px 15px;
   color: white;
   border-bottom: 2px solid snow;
-  background-color: #242323;
+  background-color: #010101d2;
   user-select: none;
   margin-bottom: 0px;
+  text-transform: capitalize;
 }
 .chatbot-chat-container {
   height: calc(100vh - 172px);

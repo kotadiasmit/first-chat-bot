@@ -1,0 +1,18 @@
+.user-list {
+  list-style-type: decimal;
+  margin-left: 15px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.user-list:hover {
+  color: blue;
+}
+.activeUser {
+  color: blue;
+}
+
+.display-user-name {
+  font-size: 18px;
+  margin-left: 4px;
+  text-transform: capitalize;
+}

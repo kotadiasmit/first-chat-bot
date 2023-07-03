@@ -1,18 +1,33 @@
+.user-list-container {
+  width: 18vw;
+  margin: 0px;
+  padding: 15px;
+  background-color: #3d3d3d;
+  color: snow;
+  height: calc(100vh - 59px);
+  overflow: auto;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #edeaea;
+  flex-grow: 1;
+  background-image: url("https://www.freecodecamp.org/news/content/images/2020/07/wooden-robot-6069-1.jpg");
+  background-size: 100% 100%;
   padding: 10px;
   font-family: serif;
   height: calc(100vh - 59px);
 }
+
 .form-sub-container {
   width: 300px;
 }
 .label {
+  color: snow;
   font-size: 18px;
+  font-weight: 500;
   margin-left: 2px;
   align-self: flex-start;
 }
@@ -31,6 +46,15 @@
   width: 300px;
   color: red;
   margin-top: 0px;
+}
+@media (max-width: 900px) {
+  .form-container {
+    width: 75vw;
+    flex-grow: 0;
+  }
+  .user-list-container {
+    width: 25vw;
+  }
 }
 @media (max-width: 400px) {
   .form-sub-container {

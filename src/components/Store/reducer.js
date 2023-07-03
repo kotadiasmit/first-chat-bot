@@ -24,6 +24,7 @@ const chatReducer = createSlice({
   initialState: {
     randomUser: [],
     chatBotChat: [],
+    userIndex: null,
   },
   reducers: {
     submitUser(state, action) {
@@ -32,17 +33,17 @@ const chatReducer = createSlice({
       state.randomUser.push(action.payload);
       state.chatBotChat.push(newChat);
     },
+    setUserIndex(state, action) {
+      state.userIndex = action.payload;
+    },
     addChatBotMsg(state, action) {
       const { userIndex, addChatBotChat } = action.payload;
-      console.log(addChatBotChat);
-      console.log(state.chatBotChat);
       state.chatBotChat[userIndex].myChat.push(addChatBotChat);
     },
     updateStar(state, action) {
       const { userIndex, id, value } = action.payload;
       const userChat = state.chatBotChat[userIndex];
       const index = userChat.myChat.findIndex((chat) => chat.id === id);
-      console.log(index);
       state.chatBotChat[userIndex].myChat[index].stared = value;
     },
     updateLoved(state, action) {
@@ -53,29 +54,18 @@ const chatReducer = createSlice({
     },
     addThreadMsg(state, action) {
       const { userIndex, chatId, addThreadChat } = action.payload;
-      //     const index = chatBotChatsArray.findIndex((chat) => chat.id === chatId);
-      // const ThreadArray = useSelector(
-      //   (state) => state.chatStore.chatBotChat[userIndex].myChat[index].thread
-      // );
       const userChat = state.chatBotChat[userIndex];
-      console.log(userChat);
       const index = userChat.myChat.findIndex((chat) => chat.id === chatId);
-      console.log(index);
       state.chatBotChat[userIndex].myChat[index].thread.push(addThreadChat);
-      //state.chatBotChat[index].thread.push(addThreadChat);
-    },
-    removeChats(state) {
-      const newChat = state.chatBotChat.slice(0, 1);
-      state.chatBotChat = newChat;
     },
   },
 });
 export const {
   submitUser,
+  setUserIndex,
   addChatBotMsg,
   updateStar,
   updateLoved,
   addThreadMsg,
-  removeChats,
 } = chatReducer.actions;
 export default chatReducer.reducer;

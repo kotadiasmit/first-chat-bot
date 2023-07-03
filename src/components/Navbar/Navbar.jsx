@@ -14,7 +14,7 @@ const NavbarComp = () => {
 
         <Nav>
           <NavLink to="/" className="nav-link">
-            User
+            Change User
           </NavLink>
           <NavLink to="/userChats" className="nav-link">
             User Chats
