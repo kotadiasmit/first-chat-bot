@@ -1,10 +1,9 @@
 import { useDispatch } from "react-redux";
-import "./ChatBotChat.scss";
+import "./ChatBotChat.css";
 import { AiFillStar, AiFillHeart, AiFillMessage } from "react-icons/ai";
 import { updateLoved, updateStar } from "../Store/reducer";
 
-const ChatBotChat = (props) => {
-  const { chat, showThread, userIndex } = props;
+const ChatBotChat = ({ chat, showThread, userIndex }) => {
   const { id, name, chatBotMsg, msgTime, stared, loved } = chat;
   const dispatch = useDispatch();
 
@@ -19,30 +18,24 @@ const ChatBotChat = (props) => {
   };
 
   return (
-    <>
-      <div className="user-chatbot-container">
+    <div className="user-chatbot-container">
+      <div>
+        <p className="user-name">
+          {name}
+          <span className="time-span">{msgTime}</span>
+        </p>
+        <p className="chat">{chatBotMsg}</p>
         <div>
-          <p className="user-name">
-            {name}
-            <span className="time-span">{msgTime}</span>
-          </p>
-          <p className="chat">{chatBotMsg}</p>
-          <div>
-            {stared && <AiFillStar color="yellow" className="chat-icons" />}
-            {loved && <AiFillHeart color="red" className="chat-icons" />}
-          </div>
-        </div>
-        <div>
-          <AiFillStar color="yellow" className="icons" onClick={onClickStar} />
-          <AiFillHeart color="red" className="icons" onClick={onClickHeart} />
-          <AiFillMessage
-            color="gray"
-            className="icons"
-            onClick={onClickThread}
-          />
+          {stared && <AiFillStar color="yellow" className="chat-icons" />}
+          {loved && <AiFillHeart color="red" className="chat-icons" />}
         </div>
       </div>
-    </>
+      <div>
+        <AiFillStar color="yellow" className="icons" onClick={onClickStar} />
+        <AiFillHeart color="red" className="icons" onClick={onClickHeart} />
+        <AiFillMessage color="gray" className="icons" onClick={onClickThread} />
+      </div>
+    </div>
   );
 };
 export default ChatBotChat;

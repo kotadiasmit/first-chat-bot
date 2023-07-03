@@ -68,16 +68,14 @@ const UserDetails = () => {
       <NavbarComp />
       <div className="d-flex flex-row">
         {randomUser.length ? (
-          <>
-            <ul className="user-list-container">
-              <h3>Users List</h3>
-              {randomUser.map((user) => (
-                <UserList key={user.id} user={user} />
-              ))}
-            </ul>
-          </>
+          <ul className="user-list-container">
+            <h3>Users List</h3>
+            {randomUser.map((user) => (
+              <UserList key={user.id} user={user} />
+            ))}
+          </ul>
         ) : (
-          <div className="m-2">
+          <div className="user-list-container">
             <h3>Users List</h3>
             <h5>No active users.</h5>
           </div>

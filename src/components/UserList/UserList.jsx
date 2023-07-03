@@ -3,8 +3,7 @@ import "./UserList.css";
 import { setUserIndex } from "../Store/reducer";
 import { useNavigate } from "react-router-dom";
 
-const UserList = (props) => {
-  const { user } = props;
+const UserList = ({ user }) => {
   const { id, name } = user;
   const dispatch = useDispatch();
   const navigate = useNavigate();

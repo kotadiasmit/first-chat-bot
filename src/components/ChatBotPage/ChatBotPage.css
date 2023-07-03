@@ -25,26 +25,25 @@
   border-top: 2px solid snow;
   align-items: center;
   padding: 15px;
-
-  .chatbot-input {
-    width: 100%;
-    margin-right: 12px;
-    border-radius: 3px;
-    outline: none;
-    border: none;
-    padding-left: 5px;
-  }
-  .send-btn {
-    width: 100px;
-    padding: 3px 0px 3px 0px;
-    color: white;
-    background-color: blue;
-    border-radius: 3px;
-    border: none;
-  }
-  .send-btn:active {
-    background-color: darkblue;
-  }
+}
+.chatbot-input {
+  width: 100%;
+  margin-right: 12px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  padding-left: 5px;
+}
+.send-btn {
+  width: 100px;
+  padding: 3px 0px 3px 0px;
+  color: white;
+  background-color: blue;
+  border-radius: 3px;
+  border: none;
+}
+.send-btn:active {
+  background-color: darkblue;
 }
 * {
   scrollbar-width: thin;

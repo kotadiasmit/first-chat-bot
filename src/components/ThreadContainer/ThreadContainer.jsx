@@ -6,8 +6,12 @@ import { addThreadMsg } from "../Store/reducer";
 import { AiOutlineClose } from "react-icons/ai";
 import "./ThreadContainer.css";
 
-const ThreadContainer = (props) => {
-  const { chatId, chatBotChatsArray, closeThread, userIndex } = props;
+const ThreadContainer = ({
+  chatId,
+  chatBotChatsArray,
+  closeThread,
+  userIndex,
+}) => {
   const index = chatBotChatsArray.findIndex((chat) => chat.id === chatId);
   const ThreadArray = useSelector(
     (state) => state.chatStore.chatBotChat[userIndex].myChat[index].thread

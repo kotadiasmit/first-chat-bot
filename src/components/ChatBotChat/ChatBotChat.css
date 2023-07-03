@@ -3,10 +3,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 12px;
   .icons {
     display: none;
   }
-  margin-top: 12px;
 }
 .user-chatbot-container:hover {
   background-color: #000000ab;

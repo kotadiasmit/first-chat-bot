@@ -50,7 +50,7 @@
 @media (max-width: 900px) {
   .form-container {
     width: 75vw;
-    flex-grow: 0;
+    flex-grow: 1;
   }
   .user-list-container {
     width: 25vw;

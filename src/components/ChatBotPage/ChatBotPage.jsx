@@ -1,4 +1,4 @@
-import "./ChatBotPage.scss";
+import "./ChatBotPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import NavbarComp from "../Navbar/Navbar";
 import { useEffect, useRef, useState } from "react";
